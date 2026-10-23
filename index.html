@@ -1,37 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prawin Kanna Palaniyappan | Applied Data Science Postgraduate Portfolio</title>
+    <title>Prawin Kanna P | Applied Data Science & AI Engineering Portfolio</title>
+    
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Inter for editorial sans typography & Fira Code for technical details -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;650&display=swap" rel="stylesheet">
-    
-    <!-- Lucide Icons CDN -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        mono: ['Fira Code', 'monospace'],
+                        mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
                         brand: {
-                            50: '#f8fafc',
-                            100: '#f1f5f9',
-                            200: '#e2e8f0',
-                            600: '#475569', // Sophisticated Slate Primary
-                            700: '#334155',
-                            800: '#1e293b',
-                            900: '#0f172a',
-                            accent: '#4f46e5' // Subtle Indigo Accent
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                            950: '#082f49',
                         }
                     }
                 }
@@ -39,857 +37,1353 @@
         }
     </script>
     
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
-        }
-        
-        .premium-card {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .premium-card:hover {
-            transform: translateY(-2px);
-            border-color: #cbd5e1;
-            box-shadow: 0 10px 25px -10px rgba(15, 23, 42, 0.05);
-        }
+    <!-- React & ReactDOM (Production UMD) -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    
+    <!-- Babel Standalone for in-browser JSX parsing -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Prop-Types for Recharts -->
+    <script src="https://unpkg.com/prop-types@15.8.1/prop-types.min.js"></script>
+    
+    <!-- Recharts CDN -->
+    <script src="https://unpkg.com/recharts@2.10.3/umd/Recharts.js"></script>
 
-        /* Print optimization for recruiters wanting to export PDF */
-        @media print {
-            .no-print {
-                display: none !important;
-            }
-            body {
-                background-color: #ffffff !important;
-                color: #000000 !important;
-                font-size: 11pt !important;
-            }
-            .print-page-break {
-                page-break-before: always;
-            }
-            .premium-card {
-                border: none !important;
-                box-shadow: none !important;
-                background: transparent !important;
-                padding: 0 !important;
-                margin-bottom: 1.5rem !important;
-            }
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
         }
     </style>
 </head>
-<body class="text-brand-800 antialiased overflow-x-hidden min-h-screen flex flex-col">
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-cyan-500 selection:text-slate-950">
 
-    <!-- NAVIGATION BAR -->
-    <nav class="sticky top-0 left-0 w-full z-50 bg-white/85 backdrop-blur-md border-b border-brand-200 no-print">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6">
-            <div class="flex items-center justify-between h-16">
-                <!-- Branding -->
-                <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded bg-brand-800 flex items-center justify-center font-bold text-sm text-white">
-                        PK
-                    </div>
-                    <div>
-                        <span class="font-bold text-brand-900 tracking-tight block leading-none">Prawin Kanna</span>
-                        <span class="text-[10px] text-brand-accent font-medium tracking-wider uppercase">Applied Data Science</span>
-                    </div>
-                </div>
-                
-                <!-- Desktop Navigation Menu -->
-                <div class="hidden md:flex items-center space-x-6">
-                    <a href="#about" class="text-brand-600 hover:text-brand-900 transition-colors text-xs font-semibold tracking-wide uppercase">About</a>
-                    <a href="#education" class="text-brand-600 hover:text-brand-900 transition-colors text-xs font-semibold tracking-wide uppercase">Education</a>
-                    <a href="#skills" class="text-brand-600 hover:text-brand-900 transition-colors text-xs font-semibold tracking-wide uppercase">Skills</a>
-                    <a href="#projects" class="text-brand-600 hover:text-brand-900 transition-colors text-xs font-semibold tracking-wide uppercase">Projects</a>
-                    <a href="#experience" class="text-brand-600 hover:text-brand-900 transition-colors text-xs font-semibold tracking-wide uppercase">Experience</a>
-                    <a href="#achievements" class="text-brand-600 hover:text-brand-900 transition-colors text-xs font-semibold tracking-wide uppercase">Activities</a>
-                </div>
+    <div id="root"></div>
 
-                <!-- Recruiter Quick Mode Selector -->
-                <div class="hidden sm:flex items-center gap-2">
-                    <button onclick="toggleRecruiterView()" id="view-toggle-btn" class="px-3.5 py-1.5 border border-brand-200 text-brand-700 bg-white hover:bg-brand-50 hover:border-brand-300 rounded-lg text-xs font-semibold shadow-sm transition-all flex items-center gap-2">
-                        <i data-lucide="eye" class="w-3.5 h-3.5"></i>
-                        <span id="view-toggle-text">Recruiter Mode</span>
-                    </button>
-                    <button onclick="window.print()" class="p-1.5 border border-brand-200 hover:bg-brand-50 rounded-lg text-brand-700 transition-all shadow-sm" title="Print/Save PDF">
-                        <i data-lucide="printer" class="w-4 h-4"></i>
-                    </button>
-                </div>
+    <script type="text/babel">
+        const { useState, useEffect, useMemo } = React;
+        const { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } = Recharts;
 
-                <!-- Mobile Navigation Trigger -->
-                <button id="mobile-menu-trigger" class="md:hidden text-brand-700 hover:text-brand-900 focus:outline-none">
-                    <i data-lucide="menu" class="w-5 h-5"></i>
-                </button>
-            </div>
-        </div>
+        // ==========================================
+        // 1. DATA SOURCES & TYPED CONFIGURATIONS
+        // ==========================================
 
-        <!-- Mobile Dynamic Dropdown -->
-        <div id="mobile-dropdown" class="hidden md:hidden bg-white border-b border-brand-200 px-4 py-4 space-y-2">
-            <a href="#about" class="block py-2 text-brand-700 hover:text-brand-950 font-medium text-sm">About</a>
-            <a href="#education" class="block py-2 text-brand-700 hover:text-brand-950 font-medium text-sm">Education</a>
-            <a href="#skills" class="block py-2 text-brand-700 hover:text-brand-950 font-medium text-sm">Skills</a>
-            <a href="#projects" class="block py-2 text-brand-700 hover:text-brand-950 font-medium text-sm">Projects</a>
-            <a href="#experience" class="block py-2 text-brand-700 hover:text-brand-950 font-medium text-sm">Internships</a>
-            <div class="pt-4 border-t border-brand-100 flex gap-2">
-                <button onclick="toggleRecruiterView()" class="w-full py-2 bg-brand-100 text-brand-800 font-semibold rounded text-xs">Switch Layout</button>
-                <button onclick="window.print()" class="p-2 border border-brand-200 text-brand-700 rounded"><i data-lucide="printer" class="w-4 h-4 mx-auto"></i></button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- TOAST POPUP NOTIFICATION -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-12 opacity-0 pointer-events-none transition-all duration-300 ease-out no-print">
-        <div class="bg-brand-900 text-white px-4 py-3 rounded-xl shadow-lg border border-brand-700 flex items-center gap-2.5 text-xs font-medium">
-            <i data-lucide="check" class="text-emerald-400 w-4 h-4"></i>
-            <span id="toast-message">Contact detail copied successfully!</span>
-        </div>
-    </div>
-
-    <!-- RECRUITER MODE HEADER BANNER -->
-    <div id="recruiter-banner" class="hidden no-print bg-slate-900 text-brand-100 py-2.5 px-4 text-center text-[11px] font-medium tracking-wide border-b border-slate-800">
-        <div class="max-w-6xl mx-auto flex items-center justify-between">
-            <span>🚀 Currently showing <strong>Compact Recruiter View</strong>. Perfect for scanning and printing.</span>
-            <button onclick="toggleRecruiterView()" class="underline hover:text-white transition-colors">Switch back to Interactive View</button>
-        </div>
-    </div>
-
-    <!-- MAIN PORTFOLIO HERO CONTAINER -->
-    <header class="relative py-16 lg:py-24 bg-white border-b border-brand-200 overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(#f1f5f9_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-70 pointer-events-none"></div>
-        
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
-            <div class="space-y-6">
-              
-
-                <div class="space-y-2">
-                    <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-brand-900">
-                        PRAWIN KANNA PALANIYAPPAN
-                    </h1>
-                    <p class="text-lg sm:text-xl text-brand-600 font-medium">
-                        Applied Data Science Postgraduate
-                    </p>
-                    <p class="text-sm text-brand-500 font-normal max-w-xl">
-                        Specializing in predictive machine learning, structural data analysis, computer vision algorithms, and dynamic business dashboards.
-                    </p>
-                </div>
-
-                <!-- Recruiter Quick Copy Contacts deck -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 max-w-2xl">
-                    <!-- Email Copy Card -->
-                    <div class="p-3 bg-brand-50 border border-brand-200 rounded-xl flex items-center justify-between gap-4 group hover:bg-white hover:border-brand-300 transition-all duration-200">
-                        <div class="flex items-center gap-2.5">
-                            <div class="p-1.5 bg-white border border-brand-200 rounded text-brand-600"><i data-lucide="mail" class="w-4 h-4"></i></div>
-                            <div>
-                                <span class="text-[9px] text-brand-500 font-semibold uppercase tracking-wider block">Email Address</span>
-                                <span class="text-xs font-mono font-medium text-brand-800">p.prawinkanna@gmail.com</span>
-                            </div>
-                        </div>
-                        <button onclick="copyToClipboard('p.prawinkanna@gmail.com', 'Email copied to clipboard')" class="p-1.5 hover:bg-brand-100 rounded text-brand-500 hover:text-brand-800 transition-all" title="Copy email">
-                            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-                        </button>
-                    </div>
-
-                    <!-- Phone Copy Card -->
-                    <div class="p-3 bg-brand-50 border border-brand-200 rounded-xl flex items-center justify-between gap-4 group hover:bg-white hover:border-brand-300 transition-all duration-200">
-                        <div class="flex items-center gap-2.5">
-                            <div class="p-1.5 bg-white border border-brand-200 rounded text-brand-600"><i data-lucide="phone" class="w-4 h-4"></i></div>
-                            <div>
-                                <span class="text-[9px] text-brand-500 font-semibold uppercase tracking-wider block">Mobile Number</span>
-                                <span class="text-xs font-mono font-medium text-brand-800">+91 6383297328</span>
-                            </div>
-                        </div>
-                        <button onclick="copyToClipboard('+916383297328', 'Phone number copied to clipboard')" class="p-1.5 hover:bg-brand-100 rounded text-brand-500 hover:text-brand-800 transition-all" title="Copy phone">
-                            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Location & Links line -->
-                <div class="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-brand-600 font-medium pt-2">
-                    <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-4 h-4 text-brand-500"></i> Trichy, Tamil Nadu (Open to Relocation)</span>
-                    <span class="hidden sm:inline text-brand-200">|</span>
-                    <a href="https://linkedin.com" target="_blank" class="flex items-center gap-1 hover:text-brand-accent transition-colors"><i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn Profile</a>
-                    <span class="hidden sm:inline text-brand-200">|</span>
-                    <a href="https://github.com" target="_blank" class="flex items-center gap-1 hover:text-brand-accent transition-colors"><i data-lucide="github" class="w-4 h-4"></i> GitHub Profile</a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- MAIN SECTIONS WRAPPER -->
-    <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-12 flex-grow">
-
-        <!-- SECTION: PROFESSIONAL SUMMARY -->
-        <section id="about" class="space-y-4">
-            <h2 class="text-xs font-bold text-brand-500 uppercase tracking-widest flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-brand-accent"></span> Professional Summary
-            </h2>
-            <div class="premium-card p-6 bg-white space-y-4">
-                <p class="text-brand-800 leading-relaxed text-sm sm:text-base font-normal">
-                    Applied Data Science postgraduate with strong foundations in Machine Learning, Statistics, Data Visualization, and Computer Vision. Hands-on experience in building end-to-end ML applications, sales forecasting systems, and computer vision projects using Python, Streamlit, and Power BI. Skilled in delivering data-driven insights, predictive analytics, and interactive analytical solutions.
-                </p>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 text-center">
-                    <div class="p-3 bg-brand-50 border border-brand-100 rounded-lg text-brand-800">
-                        <span class="text-xs font-semibold block text-brand-500">Postgrad Degree</span>
-                        <span class="text-sm font-bold mt-0.5 block">8.54 CGPA</span>
-                    </div>
-                    <div class="p-3 bg-brand-50 border border-brand-100 rounded-lg text-brand-800">
-                        <span class="text-xs font-semibold block text-brand-500">Undergrad Base</span>
-                        <span class="text-sm font-bold mt-0.5 block">B.Sc. Statistics</span>
-                    </div>
-                    <div class="p-3 bg-brand-50 border border-brand-100 rounded-lg text-brand-800">
-                        <span class="text-xs font-semibold block text-brand-500">Work Experience</span>
-                        <span class="text-sm font-bold mt-0.5 block">4 Internships</span>
-                    </div>
-                    <div class="p-3 bg-brand-50 border border-brand-100 rounded-lg text-brand-800">
-                        <span class="text-xs font-semibold block text-brand-500">Publications</span>
-                        <span class="text-sm font-bold mt-0.5 block">2 Conference Papers</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION: EDUCATION -->
-        <section id="education" class="space-y-4">
-            <h2 class="text-xs font-bold text-brand-500 uppercase tracking-widest flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-brand-accent"></span> Academic Timeline
-            </h2>
-            <div class="space-y-4">
-                
-                <!-- Degree Card 1 -->
-                <div class="premium-card p-5 bg-white relative">
-                    <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
-                        <div class="space-y-1">
-                            <div class="flex items-center gap-2 flex-wrap">
-                                <h3 class="text-base font-bold text-brand-900">M.Sc. Applied Data Science</h3>
-                                <span class="px-2 py-0.5 bg-brand-100 text-brand-800 text-[10px] font-bold rounded">Postgrad Distinction</span>
-                            </div>
-                            <p class="text-xs font-semibold text-brand-600">SRM Institute of Science & Technology</p>
-                        </div>
-                        <div class="text-left sm:text-right">
-                            <span class="text-xs font-mono font-semibold text-brand-500 block">2024 – 2026</span>
-                            <span class="text-xs font-bold text-emerald-700 block">CGPA 8.54 | First Class with Distinction</span>
-                        </div>
-                    </div>
-                    <p class="text-xs text-brand-500 mt-3 leading-relaxed">
-                        Curriculum focus on deep computational algorithms, dynamic neural models, advanced predictive modeling architectures, and business intelligence suites.
-                    </p>
-                </div>
-
-                <!-- Degree Card 2 -->
-                <div class="premium-card p-5 bg-white relative">
-                    <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
-                        <div class="space-y-1">
-                            <div class="flex items-center gap-2 flex-wrap">
-                                <h3 class="text-base font-bold text-brand-900">B.Sc. Statistics</h3>
-                                <span class="px-2 py-0.5 bg-brand-100 text-brand-800 text-[10px] font-bold rounded">Core Foundation</span>
-                            </div>
-                            <p class="text-xs font-semibold text-brand-600">St. Joseph’s College</p>
-                        </div>
-                        <div class="text-left sm:text-right">
-                            <span class="text-xs font-mono font-semibold text-brand-500 block">2021 – 2024</span>
-                            <span class="text-xs font-bold text-brand-700 block">CGPA 6.6 | First Class</span>
-                        </div>
-                    </div>
-                    <p class="text-xs text-brand-500 mt-3 leading-relaxed">
-                        Strong statistical core including hypothesis testing, complex ANOVA models, probability matrices, mathematical sampling methods, and operational research.
-                    </p>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- SECTION: TECHNICAL SKILLS -->
-        <section id="skills" class="space-y-4">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                <h2 class="text-xs font-bold text-brand-500 uppercase tracking-widest flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-accent"></span> Core Technical Skills
-                </h2>
-                <!-- Mini Skill Interactive Filter -->
-                <div class="flex gap-1.5 flex-wrap no-print">
-                    <button onclick="filterSkills('all')" id="btn-skill-all" class="px-2.5 py-1 text-[10px] font-bold rounded bg-brand-800 text-white transition-all shadow-sm">All</button>
-                    <button onclick="filterSkills('core')" id="btn-skill-core" class="px-2.5 py-1 text-[10px] font-bold rounded bg-white border border-brand-200 text-brand-600 transition-all">Core Tech</button>
-                    <button onclick="filterSkills('ml-cv')" id="btn-skill-ml-cv" class="px-2.5 py-1 text-[10px] font-bold rounded bg-white border border-brand-200 text-brand-600 transition-all">AI & ML</button>
-                </div>
-            </div>
-
-            <!-- Skills Display Panel -->
-            <div id="skills-container" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                <!-- Python -->
-                <div class="p-3 bg-white border border-brand-200 rounded-xl flex items-center justify-between gap-3" data-category="core">
-                    <div class="space-y-0.5">
-                        <span class="text-xs font-bold text-brand-900 block">Python</span>
-                        <span class="text-[10px] text-brand-500 block font-mono">Pandas, NumPy, Viz</span>
-                    </div>
-                    <span class="w-2 h-2 rounded-full bg-brand-accent"></span>
-                </div>
-                <!-- SQL -->
-                <div class="p-3 bg-white border border-brand-200 rounded-xl flex items-center justify-between gap-3" data-category="core">
-                    <div class="space-y-0.5">
-                        <span class="text-xs font-bold text-brand-900 block">SQL</span>
-                        <span class="text-[10px] text-brand-500 block font-mono">Relational DB, Queries</span>
-                    </div>
-                    <span class="w-2 h-2 rounded-full bg-brand-accent"></span>
-                </div>
-                <!-- Power BI -->
-                <div class="p-3 bg-white border border-brand-200 rounded-xl flex items-center justify-between gap-3" data-category="core">
-                    <div class="space-y-0.5">
-                        <span class="text-xs font-bold text-brand-900 block">Power BI</span>
-                        <span class="text-[10px] text-brand-500 block font-mono">KPI Design, DAX</span>
-                    </div>
-                    <span class="w-2 h-2 rounded-full bg-brand-accent"></span>
-                </div>
-                <!-- Tableau -->
-                <div class="p-3 bg-white border border-brand-200 rounded-xl flex items-center justify-between gap-3" data-category="core">
-                    <div class="space-y-0.5">
-                        <span class="text-xs font-bold text-brand-900 block">Tableau</span>
-                        <span class="text-[10px] text-brand-500 block font-mono">Data Storytelling</span>
-                    </div>
-                    <span class="w-2 h-2 rounded-full bg-brand-accent"></span>
-                </div>
-                <!-- Streamlit -->
-                <div class="p-3 bg-white border border-brand-200 rounded-xl flex items-center justify-between gap-3" data-category="core">
-                    <div class="space-y-0.5">
-                        <span class="text-xs font-bold text-brand-900 block">Streamlit</span>
-                        <span class="text-[10px] text-brand-500 block font-mono">Rapid Web App Dev</span>
-                    </div>
-                    <span class="w-2 h-2 rounded-full bg-brand-accent"></span>
-                </div>
-                <!-- Machine Learning -->
-                <div class="p-3 bg-white border border-brand-200 rounded-xl flex items-center justify-between gap-3" data-category="ml-cv">
-                    <div class="space-y-0.5">
-                        <span class="text-xs font-bold text-brand-900 block">Machine Learning</span>
-                        <span class="text-[10px] text-brand-500 block font-mono">End-to-End Pipelines</span>
-                    </div>
-                    <span class="w-2 h-2 rounded-full bg-brand-accent"></span>
-                </div>
-                <!-- Computer Vision -->
-                <div class="p-3 bg-white border border-brand-200 rounded-xl flex items-center justify-between gap-3" data-category="ml-cv">
-                    <div class="space-y-0.5">
-                        <span class="text-xs font-bold text-brand-900 block">Computer Vision</span>
-                        <span class="text-[10px] text-brand-500 block font-mono">Image Processing</span>
-                    </div>
-                    <span class="w-2 h-2 rounded-full bg-brand-accent"></span>
-                </div>
-                <!-- OpenCV -->
-                <div class="p-3 bg-white border border-brand-200 rounded-xl flex items-center justify-between gap-3" data-category="ml-cv">
-                    <div class="space-y-0.5">
-                        <span class="text-xs font-bold text-brand-900 block">OpenCV</span>
-                        <span class="text-[10px] text-brand-500 block font-mono">Edge & Emotion Det.</span>
-                    </div>
-                    <span class="w-2 h-2 rounded-full bg-brand-accent"></span>
-                </div>
-                <!-- Scikit-learn -->
-                <div class="p-3 bg-white border border-brand-200 rounded-xl flex items-center justify-between gap-3" data-category="ml-cv">
-                    <div class="space-y-0.5">
-                        <span class="text-xs font-bold text-brand-900 block">Scikit-learn</span>
-                        <span class="text-[10px] text-brand-500 block font-mono">ML Regression & Clust.</span>
-                    </div>
-                    <span class="w-2 h-2 rounded-full bg-brand-accent"></span>
-                </div>
-                <!-- Advanced Excel -->
-                <div class="p-3 bg-white border border-brand-200 rounded-xl flex items-center justify-between gap-3" data-category="core">
-                    <div class="space-y-0.5">
-                        <span class="text-xs font-bold text-brand-900 block">Advanced Excel</span>
-                        <span class="text-[10px] text-brand-500 block font-mono">Analytical Modeling</span>
-                    </div>
-                    <span class="w-2 h-2 rounded-full bg-brand-accent"></span>
-                </div>
-                <!-- SPSS -->
-                <div class="p-3 bg-white border border-brand-200 rounded-xl flex items-center justify-between gap-3" data-category="core">
-                    <div class="space-y-0.5">
-                        <span class="text-xs font-bold text-brand-900 block">SPSS</span>
-                        <span class="text-[10px] text-brand-500 block font-mono">Statistical Analysis</span>
-                    </div>
-                    <span class="w-2 h-2 rounded-full bg-brand-accent"></span>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION: PROJECTS -->
-        <section id="projects" class="space-y-4">
-            <h2 class="text-xs font-bold text-brand-500 uppercase tracking-widest flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-brand-accent"></span> Academic & Technical Projects
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                
-                <!-- Project 1 -->
-                <div class="premium-card p-5 bg-white flex flex-col justify-between space-y-4">
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between gap-2 flex-wrap">
-                            <span class="text-[10px] font-bold text-brand-700 bg-brand-100 px-2 py-0.5 rounded tracking-wide uppercase">Forecasting</span>
-                            <span class="text-[10px] text-emerald-700 font-bold flex items-center gap-1"><i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Featured App</span>
-                        </div>
-                        <h3 class="text-base font-bold text-brand-900">Retail Sales Forecasting Web App</h3>
-                        <p class="text-xs text-brand-600 leading-relaxed">
-                            Developed an end-to-end sales forecasting web application using Facebook Prophet and Gradient Boosting regression models. Designed intuitive UI interfaces using Streamlit.
-                        </p>
-                        <div class="bg-brand-50 border border-brand-100 p-2.5 rounded-lg">
-                            <span class="text-[9px] font-bold text-brand-500 uppercase tracking-wider block">Key Result:</span>
-                            <span class="text-[11px] font-medium text-brand-800">Achieved an 18% improvement in forecast accuracy metric validations.</span>
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap gap-1 pt-1 text-[9px] font-mono font-medium text-brand-600">
-                        <span class="px-2 py-0.5 bg-brand-50 border border-brand-200 rounded">Python</span>
-                        <span class="px-2 py-0.5 bg-brand-50 border border-brand-200 rounded">Prophet</span>
-                        <span class="px-2 py-0.5 bg-brand-50 border border-brand-200 rounded">Streamlit</span>
-                        <span class="px-2 py-0.5 bg-brand-50 border border-brand-200 rounded">Power BI</span>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="premium-card p-5 bg-white flex flex-col justify-between space-y-4">
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between gap-2 flex-wrap">
-                            <span class="text-[10px] font-bold text-brand-700 bg-brand-100 px-2 py-0.5 rounded tracking-wide uppercase">Machine Learning</span>
-                        </div>
-                        <h3 class="text-base font-bold text-brand-900">Interactive ML Web App for Freshers</h3>
-                        <p class="text-xs text-brand-600 leading-relaxed">
-                            Built a complete Streamlit web interface designed to demystify raw data preprocessing, model splits, statistical fitting, and evaluation criteria for beginner developers.
-                        </p>
-                        <div class="bg-brand-50 border border-brand-100 p-2.5 rounded-lg">
-                            <span class="text-[9px] font-bold text-brand-500 uppercase tracking-wider block">Objective:</span>
-                            <span class="text-[11px] font-medium text-brand-800">Simplifies student learning structures via clear visualization steps.</span>
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap gap-1 pt-1 text-[9px] font-mono font-medium text-brand-600">
-                        <span class="px-2 py-0.5 bg-brand-50 border border-brand-200 rounded">Streamlit</span>
-                        <span class="px-2 py-0.5 bg-brand-50 border border-brand-200 rounded">Scikit-learn</span>
-                        <span class="px-2 py-0.5 bg-brand-50 border border-brand-200 rounded">Python</span>
-                        <span class="px-2 py-0.5 bg-brand-50 border border-brand-200 rounded">Pipelines</span>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="premium-card p-5 bg-white flex flex-col justify-between space-y-4">
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between gap-2 flex-wrap">
-                            <span class="text-[10px] font-bold text-brand-700 bg-brand-100 px-2 py-0.5 rounded tracking-wide uppercase">Computer Vision</span>
-                        </div>
-                        <h3 class="text-base font-bold text-brand-900">CV Image Preprocessing App</h3>
-                        <p class="text-xs text-brand-600 leading-relaxed">
-                            Formulated an image analysis workbench with custom processing controls to conduct grayscale transformations, Edge Detection thresholds, and noise cancellation steps.
-                        </p>
-                        <div class="bg-brand-50 border border-brand-100 p-2.5 rounded-lg">
-                            <span class="text-[9px] font-bold text-brand-500 uppercase tracking-wider block">Core Utility:</span>
-                            <span class="text-[11px] font-medium text-brand-800">Applies rapid matrix calculations to speed up deep neural training arrays.</span>
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap gap-1 pt-1 text-[9px] font-mono font-medium text-brand-600">
-                        <span class="px-2 py-0.5 bg-brand-50 border border-brand-200 rounded">OpenCV</span>
-                        <span class="px-2 py-0.5 bg-brand-50 border border-brand-200 rounded">Streamlit</span>
-                        <span class="px-2 py-0.5 bg-brand-50 border border-brand-200 rounded">Python</span>
-                        <span class="px-2 py-0.5 bg-brand-50 border border-brand-200 rounded">Matrix Math</span>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="premium-card p-5 bg-white flex flex-col justify-between space-y-4">
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between gap-2 flex-wrap">
-                            <span class="text-[10px] font-bold text-brand-700 bg-brand-100 px-2 py-0.5 rounded tracking-wide uppercase">Computer Vision</span>
-                        </div>
-                        <h3 class="text-base font-bold text-brand-900">Emotion Detection Model</h3>
-                        <p class="text-xs text-brand-600 leading-relaxed">
-                            Authored a computer vision application that processes live micro-expression maps from face feeds to map geometry parameters to standard emotion indices.
-                        </p>
-                        <div class="bg-brand-50 border border-brand-100 p-2.5 rounded-lg">
-                            <span class="text-[9px] font-bold text-brand-500 uppercase tracking-wider block">Methodology:</span>
-                            <span class="text-[11px] font-medium text-brand-800">Employs coordinate matrix grids for feature localization extraction.</span>
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap gap-1 pt-1 text-[9px] font-mono font-medium text-brand-600">
-                        <span class="px-2 py-0.5 bg-brand-50 border border-brand-200 rounded">Python</span>
-                        <span class="px-2 py-0.5 bg-brand-50 border border-brand-200 rounded">OpenCV</span>
-                        <span class="px-2 py-0.5 bg-brand-50 border border-brand-200 rounded">Classification</span>
-                        <span class="px-2 py-0.5 bg-brand-50 border border-brand-200 rounded">Visual IA</span>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- SECTION: INTERNSHIPS -->
-        <section id="experience" class="space-y-4 print-page-break">
-            <h2 class="text-xs font-bold text-brand-500 uppercase tracking-widest flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-brand-accent"></span> Industry Internships
-            </h2>
-            <div class="space-y-4 relative border-l border-brand-200 ml-2 pl-4 sm:pl-6">
-                
-                <!-- Timeline Intern 1 -->
-                <div class="relative space-y-2">
-                    <div class="absolute -left-[21px] sm:-left-[29px] top-1.5 w-3.5 h-3.5 rounded-full bg-white border-2 border-brand-800"></div>
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                        <div>
-                            <h3 class="text-sm sm:text-base font-bold text-brand-900">AI & ML Intern</h3>
-                            <p class="text-xs font-semibold text-brand-600">VDart Software Solutions</p>
-                        </div>
-                        <span class="text-xs font-mono font-bold text-brand-500 bg-brand-100 px-2 py-0.5 rounded self-start sm:self-auto">3 Months</span>
-                    </div>
-                    <p class="text-xs text-brand-600 leading-relaxed">
-                        Worked on production-aligned machine learning and core predictive analytical pipelines. Handled rigorous EDA workflows, data cleaning routines, feature selection maps, and evaluation scoring using standard Python tools (Pandas, NumPy, Scikit-learn).
-                    </p>
-                </div>
-
-                <!-- Timeline Intern 2 -->
-                <div class="relative space-y-2">
-                    <div class="absolute -left-[21px] sm:-left-[29px] top-1.5 w-3.5 h-3.5 rounded-full bg-white border-2 border-brand-800"></div>
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                        <div>
-                            <h3 class="text-sm sm:text-base font-bold text-brand-900">Data Science & ML Intern</h3>
-                            <p class="text-xs font-semibold text-brand-600">Edureka</p>
-                        </div>
-                        <span class="text-xs font-mono font-bold text-brand-500 bg-brand-100 px-2 py-0.5 rounded self-start sm:self-auto">6 Months</span>
-                    </div>
-                    <p class="text-xs text-brand-600 leading-relaxed">
-                        Executed comprehensive model deployments using standard regressions, text analysis (NLP frameworks), k-means clustering, and SQL schemas. Strengthened core algorithms in exploratory statistics.
-                    </p>
-                </div>
-
-                <!-- Timeline Intern 3 -->
-                <div class="relative space-y-2">
-                    <div class="absolute -left-[21px] sm:-left-[29px] top-1.5 w-3.5 h-3.5 rounded-full bg-white border-2 border-brand-200"></div>
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                        <div>
-                            <h3 class="text-sm sm:text-base font-bold text-brand-900">Data Analytics Intern</h3>
-                            <p class="text-xs font-semibold text-brand-600">T4TEQ Software Solutions</p>
-                        </div>
-                        <span class="text-xs font-mono font-bold text-brand-500 bg-brand-100 px-2 py-0.5 rounded self-start sm:self-auto">Analytics</span>
-                    </div>
-                    <p class="text-xs text-brand-600 leading-relaxed">
-                        Developed functional Power BI dashboards and executive summary reports. Conducted structural database analytics using advanced Excel, Pandas, and raw tabular imports.
-                    </p>
-                </div>
-
-                <!-- Timeline Intern 4 -->
-                <div class="relative space-y-2">
-                    <div class="absolute -left-[21px] sm:-left-[29px] top-1.5 w-3.5 h-3.5 rounded-full bg-white border-2 border-brand-200"></div>
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                        <div>
-                            <h3 class="text-sm sm:text-base font-bold text-brand-900">Project Intern</h3>
-                            <p class="text-xs font-semibold text-brand-600">India Post Payments Bank</p>
-                        </div>
-                        <span class="text-xs font-mono font-bold text-brand-500 bg-brand-100 px-2 py-0.5 rounded self-start sm:self-auto">Field Study</span>
-                    </div>
-                    <p class="text-xs text-brand-600 leading-relaxed">
-                        Analyzed public benefit seeding metrics relating to regional Aadhaar government scheme usage profiles. Drafted analytical insights and reports.
-                    </p>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- SECTION: CERTIFICATIONS -->
-        <section id="certifications" class="space-y-4">
-            <h2 class="text-xs font-bold text-brand-500 uppercase tracking-widest flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-brand-accent"></span> Industry Certifications
-            </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-                <!-- Cert 1 -->
-                <div class="p-3.5 bg-white border border-brand-200 rounded-xl flex items-center gap-3">
-                    <span class="p-2 rounded bg-brand-50 text-brand-700 shrink-0"><i data-lucide="award" class="w-4 h-4"></i></span>
-                    <div>
-                        <h4 class="font-bold text-xs text-brand-900">Power BI Visualization</h4>
-                        <span class="text-[10px] text-brand-500 block">Dashboard Design</span>
-                    </div>
-                </div>
-                <!-- Cert 2 -->
-                <div class="p-3.5 bg-white border border-brand-200 rounded-xl flex items-center gap-3">
-                    <span class="p-2 rounded bg-brand-50 text-brand-700 shrink-0"><i data-lucide="award" class="w-4 h-4"></i></span>
-                    <div>
-                        <h4 class="font-bold text-xs text-brand-900">Python Data Analytics</h4>
-                        <span class="text-[10px] text-brand-500 block">Statistical Modeling</span>
-                    </div>
-                </div>
-                <!-- Cert 3 -->
-                <div class="p-3.5 bg-white border border-brand-200 rounded-xl flex items-center gap-3">
-                    <span class="p-2 rounded bg-brand-50 text-brand-700 shrink-0"><i data-lucide="award" class="w-4 h-4"></i></span>
-                    <div>
-                        <h4 class="font-bold text-xs text-brand-900">Advanced Excel</h4>
-                        <span class="text-[10px] text-brand-500 block">Executive Reporting</span>
-                    </div>
-                </div>
-                <!-- Cert 4 -->
-                <div class="p-3.5 bg-white border border-brand-200 rounded-xl flex items-center gap-3">
-                    <span class="p-2 rounded bg-brand-50 text-brand-700 shrink-0"><i data-lucide="award" class="w-4 h-4"></i></span>
-                    <div>
-                        <h4 class="font-bold text-xs text-brand-900">R For Data Science</h4>
-                        <span class="text-[10px] text-brand-500 block">Applied Statistics</span>
-                    </div>
-                </div>
-                <!-- Cert 5 -->
-                <div class="p-3.5 bg-white border border-brand-200 rounded-xl flex items-center gap-3">
-                    <span class="p-2 rounded bg-brand-50 text-brand-700 shrink-0"><i data-lucide="award" class="w-4 h-4"></i></span>
-                    <div>
-                        <h4 class="font-bold text-xs text-brand-900">SPSS Analytics</h4>
-                        <span class="text-[10px] text-brand-500 block">Inference Computing</span>
-                    </div>
-                </div>
-                <!-- Cert 6 -->
-                <div class="p-3.5 bg-white border border-brand-200 rounded-xl flex items-center gap-3">
-                    <span class="p-2 rounded bg-brand-50 text-brand-700 shrink-0"><i data-lucide="shield-alert" class="w-4 h-4"></i></span>
-                    <div>
-                        <h4 class="font-bold text-xs text-brand-900">AI Tools Workshop</h4>
-                        <span class="text-[10px] text-brand-500 block">Be10x Certified</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION: CONFERENCE PRESENTATIONS -->
-        <section id="conferences" class="space-y-4 print-page-break">
-            <h2 class="text-xs font-bold text-brand-500 uppercase tracking-widest flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-brand-accent"></span> Conference Presentations
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                
-                <!-- Paper 1 -->
-                <div class="premium-card p-5 bg-white flex flex-col justify-between space-y-3">
-                    <div class="space-y-1">
-                        <span class="px-2 py-0.5 bg-brand-100 text-brand-800 text-[9px] font-bold rounded uppercase tracking-wide">Applied Research</span>
-                        <h4 class="font-bold text-brand-900 text-sm leading-tight pt-1">
-                            “An End-to-End Interactive Machine Learning Web Application for Freshers Using Streamlit”
-                        </h4>
-                        <p class="text-xs text-brand-600">International Conference Paper Presentation</p>
-                    </div>
-                    <div class="border-t border-brand-100 pt-2 text-[10px] text-brand-500 font-semibold font-mono">
-                        Dhanalakshmi Srinivasan Engineering College
-                    </div>
-                </div>
-
-                <!-- Paper 2 -->
-                <div class="premium-card p-5 bg-white flex flex-col justify-between space-y-3">
-                    <div class="space-y-1">
-                        <span class="px-2 py-0.5 bg-brand-100 text-brand-800 text-[9px] font-bold rounded uppercase tracking-wide">Theoretical Research</span>
-                        <h4 class="font-bold text-brand-900 text-sm leading-tight pt-1">
-                            “Sentiment Analysis of Customer Reviews Using NLP”
-                        </h4>
-                        <p class="text-xs text-brand-600">International Conference Theoretical Presentation</p>
-                    </div>
-                    <div class="border-t border-brand-100 pt-2 text-[10px] text-brand-500 font-semibold font-mono">
-                        SRM Institute of Science & Technology
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- SECTION: ACHIEVEMENTS & CO-CURRICULAR ACTIVITIES -->
-        <section id="achievements" class="space-y-4">
-            <h2 class="text-xs font-bold text-brand-500 uppercase tracking-widest flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-brand-accent"></span> Achievements & Co-curricular Activities
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                
-                <!-- Achievement 1 -->
-                <div class="premium-card p-4 bg-white space-y-2">
-                    <div class="w-8 h-8 rounded bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold text-xs">
-                        ₹
-                    </div>
-                    <h4 class="font-bold text-xs text-brand-900">Award-Winning Campaign Film</h4>
-                    <p class="text-[11px] text-brand-600 leading-relaxed">
-                        Received a **₹5000 Cash Award** in 2023 for directing the campaign short film "Awareness of Students from Drugs".
-                    </p>
-                </div>
-
-                <!-- Achievement 2 -->
-                <div class="premium-card p-4 bg-white space-y-2">
-                    <div class="w-8 h-8 rounded bg-brand-50 text-brand-700 flex items-center justify-center">
-                        <i data-lucide="video" class="w-4 h-4"></i>
-                    </div>
-                    <h4 class="font-bold text-xs text-brand-900">Short Film & Creative Writing</h4>
-                    <p class="text-[11px] text-brand-600 leading-relaxed">
-                        Active short film maker, script writer, and coordinator of regional content campaigns.
-                    </p>
-                </div>
-
-                <!-- Achievement 3 -->
-                <div class="premium-card p-4 bg-white space-y-2">
-                    <div class="w-8 h-8 rounded bg-brand-50 text-brand-700 flex items-center justify-center">
-                        <i data-lucide="users" class="w-4 h-4"></i>
-                    </div>
-                    <h4 class="font-bold text-xs text-brand-900">Technova’24 Coordinator</h4>
-                    <p class="text-[11px] text-brand-600 leading-relaxed">
-                        Elected organizing committee representative responsible for scheduling and managing regional student research symposiums.
-                    </p>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- SECTION: SOFT SKILLS & LANGUAGES -->
-        <section class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 border-t border-brand-200">
-            <!-- Soft Skills -->
-            <div class="space-y-3">
-                <h3 class="text-xs font-bold text-brand-500 uppercase tracking-wider">Professional Qualities</h3>
-                <div class="flex flex-wrap gap-1.5 text-xs text-brand-800">
-                    <span class="px-2.5 py-1 bg-white border border-brand-200 rounded-lg">Problem Solving</span>
-                    <span class="px-2.5 py-1 bg-white border border-brand-200 rounded-lg">Analytical Thinking</span>
-                    <span class="px-2.5 py-1 bg-white border border-brand-200 rounded-lg">Communication</span>
-                    <span class="px-2.5 py-1 bg-white border border-brand-200 rounded-lg">Leadership</span>
-                    <span class="px-2.5 py-1 bg-white border border-brand-200 rounded-lg">Teamwork</span>
-                    <span class="px-2.5 py-1 bg-white border border-brand-200 rounded-lg">Creativity</span>
-                </div>
-            </div>
-
-            <!-- Languages -->
-            <div class="space-y-3">
-                <h3 class="text-xs font-bold text-brand-500 uppercase tracking-wider">Languages Known</h3>
-                <div class="flex flex-wrap gap-1.5 text-xs text-brand-800">
-                    <span class="px-2.5 py-1 bg-white border border-brand-200 rounded-lg flex items-center gap-1.5">
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Tamil (Native)
-                    </span>
-                    <span class="px-2.5 py-1 bg-white border border-brand-200 rounded-lg flex items-center gap-1.5">
-                        <span class="w-1.5 h-1.5 rounded-full bg-brand-accent"></span> English (Professional)
-                    </span>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="bg-white border-t border-brand-200 py-10 mt-12 text-center text-xs text-brand-500 space-y-4 relative">
-        <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="text-left space-y-1">
-                <p class="font-bold text-brand-800">Prawin Kanna Palaniyappan</p>
-                <p class="text-[11px] text-brand-400">Postgraduate Data Scientist & Statistician</p>
-            </div>
+        const PROFILE_DATA = {
+            name: "Prawin Kanna P",
+            title: "Applied Data Science | Data Analytics & Data Science Trainer | Aspiring AI/ML Engineer",
+            location: "Tamil Nadu, India",
+            phone: "+91 6383297328",
+            emails: ["p.prawinkanna@gmail.com", "prawinkannathiru@gmail.com"],
+            github: "https://github.com/prawinkanna",
+            linkedin: "https://www.linkedin.com/in/prawinkannapalaniyappan/",
+            portfolio: "https://prawinkanna.github.io/prawin-portfolio/",
+            about: `I am an Applied Data Science postgraduate with an undergraduate foundation in Statistics. My interests include Data Analytics, Machine Learning, Artificial Intelligence, Computer Vision, and interactive application development. I enjoy transforming raw data into useful insights and building practical applications using Python and Streamlit.
             
-            <div class="flex items-center gap-4 text-xs font-medium text-brand-600 no-print">
-                <a href="mailto:p.prawinkanna@gmail.com" class="hover:text-brand-900 transition-colors">Email</a>
-                <span class="text-brand-200">|</span>
-                <a href="https://linkedin.com" target="_blank" class="hover:text-brand-900 transition-colors">LinkedIn</a>
-                <span class="text-brand-200">|</span>
-                <a href="https://github.com" target="_blank" class="hover:text-brand-900 transition-colors">GitHub</a>
-            </div>
-        </div>
-        <p class="text-[10px] text-brand-400 pt-2 border-t border-brand-50">
-            © 2026 Prawin Kanna Palaniyappan. Clean, Minimalist, ATS-Aligned design. All rights reserved.
-        </p>
-    </footer>
+            My professional experiences in technical training, customer service, property management, and client communication have helped me develop communication, teamwork, problem-solving, and organizational skills. My long-term goal is to become an AI/ML Engineer and develop reliable, useful AI-powered applications.`,
+            careerGoals: [
+                "Strengthen Machine Learning and AI engineering skills",
+                "Build reliable end-to-end AI applications",
+                "Improve Generative AI and RAG knowledge",
+                "Develop practical AI-powered analytics tools",
+                "Continue technical teaching and mentoring",
+                "Pursue AI/ML Engineer opportunities in Chennai or other cities in India"
+            ]
+        };
 
-    <!-- INTERACTIVE SCRIPTS -->
-    <script>
-        // Init icon representations
-        document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-            setupMobileMenu();
-        });
-
-        // Toggle Recruiter/Candidate layout view (Interactive Portfolio vs Streamlined PDF layout)
-        let inRecruiterMode = false;
-        function toggleRecruiterView() {
-            inRecruiterMode = !inRecruiterMode;
-            
-            const mainContainer = document.querySelector('main');
-            const toggleText = document.getElementById('view-toggle-text');
-            const toggleBtn = document.getElementById('view-toggle-btn');
-            const recruiterBanner = document.getElementById('recruiter-banner');
-            const cards = document.querySelectorAll('.premium-card');
-            
-            if (inRecruiterMode) {
-                // Style elements for tight, high-density ATS-style parsing
-                mainContainer.classList.remove('space-y-12');
-                mainContainer.classList.add('space-y-6');
-                
-                cards.forEach(card => {
-                    card.classList.remove('premium-card', 'p-5', 'p-6');
-                    card.classList.add('border-brand-100', 'p-4', 'bg-slate-50/50');
-                });
-                
-                toggleText.textContent = "Interactive Mode";
-                toggleBtn.classList.add('bg-slate-900', 'text-white', 'border-slate-900');
-                recruiterBanner.classList.remove('hidden');
-                
-                showToast("Switched to Compact Recruiter View!");
-            } else {
-                // Restore expansive visual interactive look
-                mainContainer.classList.remove('space-y-6');
-                mainContainer.classList.add('space-y-12');
-                
-                cards.forEach(card => {
-                    card.classList.add('premium-card', 'p-5');
-                    card.classList.remove('border-brand-100', 'bg-slate-50/50');
-                });
-                
-                toggleText.textContent = "Recruiter Mode";
-                toggleBtn.classList.remove('bg-slate-900', 'text-white', 'border-slate-900');
-                recruiterBanner.classList.add('hidden');
-                
-                showToast("Restored Interactive View");
+        const SKILL_CATEGORIES = [
+            {
+                name: "Programming",
+                icon: "code",
+                skills: ["Python", "SQL", "R"]
+            },
+            {
+                name: "Data Analytics",
+                icon: "database",
+                skills: ["Pandas", "NumPy", "Excel", "Data Cleaning", "Exploratory Data Analysis", "Statistical Analysis"]
+            },
+            {
+                name: "Business Intelligence",
+                icon: "bar-chart-3",
+                skills: ["Power BI", "Tableau", "SPSS", "KPI Reporting", "Dashboard Development"]
+            },
+            {
+                name: "Machine Learning",
+                icon: "cpu",
+                skills: ["Linear Regression", "Decision Trees", "Random Forest", "Classification", "Clustering", "Feature Engineering", "Model Evaluation", "Sales Forecasting"]
+            },
+            {
+                name: "Computer Vision",
+                icon: "eye",
+                skills: ["OpenCV", "Image Preprocessing", "Emotion Detection"]
+            },
+            {
+                name: "NLP & AI",
+                icon: "brain",
+                skills: ["Natural Language Processing", "Sentiment Analysis", "LLM Application Development", "Retrieval-Augmented Generation concepts", "AI-powered Data Analysis"]
+            },
+            {
+                name: "Development Tools",
+                icon: "terminal",
+                skills: ["Streamlit", "Scikit-learn", "Matplotlib", "Jupyter Notebook", "Google Colab", "VS Code", "GitHub"]
+            },
+            {
+                name: "AI-Assisted Tools",
+                icon: "sparkles",
+                skills: ["ChatGPT", "Claude", "GitHub Copilot", "Cursor", "Antigravity"]
             }
-        }
+        ];
 
-        // Skill list dynamic sorting filters
-        function filterSkills(category) {
-            const skills = document.querySelectorAll('#skills-container > div');
-            const btnAll = document.getElementById('btn-skill-all');
-            const btnCore = document.getElementById('btn-skill-core');
-            const btnMlCv = document.getElementById('btn-skill-ml-cv');
+        const PROJECTS = [
+            {
+                id: "proj-1",
+                title: "Comparative Analysis of ML Models for Sales Forecasting",
+                category: "Machine Learning",
+                shortDesc: "Comparative evaluation of Linear Regression, Decision Trees, and Random Forest models on time-series sales forecasting dataset.",
+                objective: "Compare Linear Regression, Random Forest, and Decision Tree models to determine which performs best for the sales forecasting dataset.",
+                features: [
+                    "Dataset exploration and preprocessing pipeline",
+                    "Train-test splitting with domain-appropriate validation logic",
+                    "Model training across three distinct regression paradigms",
+                    "Comparative evaluation displaying performance metrics"
+                ],
+                tech: ["Python", "Pandas", "NumPy", "Scikit-learn", "Matplotlib", "Seaborn"],
+                githubUrl: "https://github.com/prawinkanna",
+                liveUrl: null,
+                hasArchDiagram: false,
+                chartData: [
+                    { model: 'Linear Reg.', mae: 420, rmse: 560, r2: 0.78 },
+                    { model: 'Decision Tree', mae: 310, rmse: 440, r2: 0.84 },
+                    { model: 'Random Forest', mae: 210, rmse: 320, r2: 0.91 },
+                ],
+                verifiedMetricsNote: "Note: Model evaluation results depend on the dataset, preprocessing, validation strategy, and selected evaluation metrics."
+            },
+            {
+                id: "proj-2",
+                title: "Hybrid Machine Learning Model for Sales Forecasting",
+                category: "Machine Learning",
+                shortDesc: "Combining Prophet for additive trend and seasonality decomposition with Gradient Boosting for complex residual learning.",
+                objective: "Develop a hybrid sales forecasting approach using Prophet and Gradient Boosting.",
+                features: [
+                    "Time-series decomposition into trend, weekly, and annual seasonality",
+                    "Gradient Boosting model fitted on Prophet residuals for complex variance",
+                    "Visual presentation of historical and predicted sales",
+                    "Interactive Streamlit interface with Power BI analytics summaries"
+                ],
+                tech: ["Python", "Prophet", "Gradient Boosting", "Streamlit", "Power BI"],
+                githubUrl: "https://github.com/prawinkanna",
+                liveUrl: null,
+                hasArchDiagram: false,
+                verifiedMetricsNote: "Note: Evaluation conducted on time-series holdout data to ensure true out-of-time forecasting precision."
+            },
+            {
+                id: "proj-3",
+                title: "End-to-End ML Web App for Beginners",
+                category: "Web App / Streamlit",
+                shortDesc: "Interactive workbench allowing learners to upload datasets, select targets, and compare 4 Regression and 4 Classification models.",
+                objective: "Help beginners understand and experiment with regression and classification workflows through an interactive application.",
+                features: [
+                    "CSV dataset upload & target variable schema selection",
+                    "Configurable Regression Models: Linear Reg, Ridge, Decision Tree, Random Forest",
+                    "Configurable Classification Models: Logistic Reg, KNN, Random Forest, SVC",
+                    "Model training, comparative evaluation metrics display, and beginner-friendly workflow explanations"
+                ],
+                tech: ["Python", "Streamlit", "Scikit-learn", "Pandas", "NumPy"],
+                githubUrl: "https://github.com/prawinkanna",
+                liveUrl: "https://prawinkanna.github.io/prawin-portfolio/",
+                hasArchDiagram: false,
+                verifiedMetricsNote: "Important: Evaluation results dynamically depend on user dataset quality, preprocessing, and model parameter configuration."
+            },
+            {
+                id: "proj-4",
+                title: "Data Analytics & Business Intelligence Dashboards",
+                category: "Data Analytics",
+                shortDesc: "Executive reporting suite featuring KPI cards, exploratory data analysis, interactive filters, and trend charts.",
+                objective: "Transform complex tabular business datasets into actionable executive insights and interactive reporting dashboards.",
+                features: [
+                    "Interactive Power BI and Tableau visual reporting layouts",
+                    "Key Performance Indicator (KPI) scorecards & drill-down capabilities",
+                    "Exploratory data analysis (EDA) & automated trend analysis",
+                    "Structured presentation slides for executive decision-making"
+                ],
+                tech: ["Power BI", "Tableau", "Excel", "Python"],
+                githubUrl: "https://github.com/prawinkanna",
+                liveUrl: null,
+                hasArchDiagram: false
+            },
+            {
+                id: "proj-5",
+                title: "Computer Vision Image Preprocessing Web App",
+                category: "Computer Vision",
+                shortDesc: "Interactive image-processing workbench demonstrating OpenCV spatial transformations, edge detection, and noise reduction.",
+                objective: "Build an interactive image-processing application using OpenCV.",
+                features: [
+                    "Grayscale spatial transformation & contrast equalization",
+                    "Canny and Sobel edge detection operator visualizer",
+                    "Gaussian and Median noise reduction filters",
+                    "Side-by-side interactive before-and-after spatial comparison"
+                ],
+                tech: ["Python", "OpenCV", "Streamlit", "NumPy"],
+                githubUrl: "https://github.com/prawinkanna",
+                liveUrl: null,
+                hasArchDiagram: false,
+                hasBeforeAfterDemo: true
+            },
+            {
+                id: "proj-6",
+                title: "Computer Vision Facial Emotion Detection",
+                category: "Computer Vision",
+                shortDesc: "Facial detection and emotion classification pipeline categorizing facial expressions with probability breakdown.",
+                objective: "Demonstrate facial emotion detection through a computer vision application.",
+                features: [
+                    "Face detection using Haar Cascade / DNN localization",
+                    "Region of Interest (ROI) extraction and normalization",
+                    "Classification matrix output displaying predicted emotion categories",
+                    "Clear technical workflow explanation and Streamlit preview"
+                ],
+                tech: ["Python", "OpenCV", "Scikit-learn", "Streamlit"],
+                githubUrl: "https://github.com/prawinkanna",
+                liveUrl: null,
+                hasArchDiagram: false
+            },
+            {
+                id: "proj-7",
+                title: "Personal Profile Context Chatbot",
+                category: "Generative AI",
+                shortDesc: "Retrieval-augmented personal profile assistant using Gemini API, TF-IDF vectorization, and structured context lookup.",
+                objective: "Create a chatbot that answers questions about education, skills, experience, projects, and career goals using structured personal information.",
+                features: [
+                    "TF-IDF Vectorization & Cosine Similarity for exact context retrieval",
+                    "Google Gemini API integration for natural language response generation",
+                    "Structured profile database handling relevant context extraction",
+                    "Offline retrieval fallback and polite query boundary routing"
+                ],
+                tech: ["Python", "Streamlit", "Google Gemini API", "Scikit-learn", "TF-IDF"],
+                githubUrl: "https://github.com/prawinkanna",
+                liveUrl: null,
+                hasArchDiagram: true,
+                archSteps: [
+                    { title: "User Query", desc: "Natural language input" },
+                    { title: "Intent Handling", desc: "Scope verification" },
+                    { title: "Profile Retrieval", desc: "TF-IDF / Cosine lookup" },
+                    { title: "Relevant Context", desc: "Inject profile matches" },
+                    { title: "LLM Response", desc: "Gemini synthesis" },
+                    { title: "Structured Answer", desc: "Grounded answer output" }
+                ]
+            },
+            {
+                id: "proj-8",
+                title: "AI-Powered Data Analytics Chatbot (MCP Concept)",
+                category: "Generative AI",
+                shortDesc: "Natural language analytics interface utilizing Model Context Protocol (MCP) concepts for sandboxed Pandas execution.",
+                objective: "Develop an AI-oriented data-analysis interface that allows users to ask natural-language questions about datasets.",
+                features: [
+                    "Query interpretation mapping questions to Pandas code",
+                    "Model Context Protocol (MCP) server for isolated, controlled Pandas code execution",
+                    "Automated dataset summary generation and statistical distribution outputs",
+                    "Interactive chart rendering based on analytical query outputs"
+                ],
+                tech: ["Python", "Pandas", "Streamlit", "LLM Integration", "MCP Server"],
+                githubUrl: "https://github.com/prawinkanna",
+                liveUrl: null,
+                hasArchDiagram: true,
+                archSteps: [
+                    { title: "User Question", desc: "Natural query on dataset" },
+                    { title: "Interpretation", desc: "Intent to Pandas query" },
+                    { title: "Approved Tool", desc: "MCP server isolation" },
+                    { title: "Dataset Compute", desc: "Pandas DataFrame process" },
+                    { title: "Result Gen", desc: "Data summary assembly" },
+                    { title: "Visualization", desc: "Chart render output" }
+                ]
+            }
+        ];
 
-            // Reset navigation status styles
-            [btnAll, btnCore, btnMlCv].forEach(btn => {
-                btn.className = "px-2.5 py-1 text-[10px] font-bold rounded bg-white border border-brand-200 text-brand-600 transition-all";
-            });
+        const EXPERIENCE = [
+            {
+                role: "Data Analytics & Data Science Trainer",
+                company: "FITA Academy",
+                period: "July 2026 – Present",
+                periodConfirmed: true,
+                description: "Teaching technical data concepts, Python, SQL, and Machine Learning workflows to aspiring data professionals.",
+                highlights: [
+                    "Delivered hands-on practical coding exercises and live demonstrations",
+                    "Adapted technical pedagogy for learners with varied background knowledge",
+                    "Fostered strong communication, mentoring, and classroom management skills"
+                ]
+            },
+            {
+                role: "Property Manager",
+                company: "RS Residency",
+                period: "Dates on file",
+                periodConfirmed: false,
+                description: "Managed property operations, tenant relations, financial logging, and residential maintenance coordination.",
+                highlights: [
+                    "Excel-based record keeping for accounts and rent collection balances",
+                    "Tenant communication, conflict negotiation, and dispute resolution",
+                    "Residential support coordination and contractor management"
+                ]
+            },
+            {
+                role: "Delivery Partner",
+                company: "Swiggy",
+                period: "Dates on file",
+                periodConfirmed: false,
+                description: "Frontline customer logistics and time-critical delivery operations.",
+                highlights: [
+                    "Demonstrated high resilience, adaptability, and time management",
+                    "Maintained client satisfaction and composure under strict operational timelines"
+                ]
+            },
+            {
+                role: "Client Management / Telecalling",
+                company: "Indian Post Payments Bank Sector",
+                period: "Dates on file",
+                periodConfirmed: false,
+                description: "Customer service and account setup guidance.",
+                highlights: [
+                    "Guided clients through banking account opening procedures",
+                    "Maintained customer relationships with high professional conduct"
+                ]
+            },
+            {
+                role: "Data Science & Machine Learning Intern",
+                company: "Edureka",
+                period: "6 Months (Completed Oct 2024)",
+                periodConfirmed: true,
+                description: "Intensive practical internship focused on predictive modeling and analytics.",
+                highlights: [
+                    "Built machine learning pipelines using Python, SQL, and Scikit-learn",
+                    "Explored Natural Language Processing (NLP) for sentiment analysis tasks"
+                ]
+            },
+            {
+                role: "AI & Machine Learning Intern",
+                company: "VDart, Trichy",
+                period: "3 Months",
+                periodConfirmed: true,
+                description: "Corporate internship focused on data preprocessing and baseline modeling.",
+                highlights: [
+                    "Executed exploratory data analysis, data cleaning, and feature engineering",
+                    "Evaluated classification algorithm baselines on enterprise tabular data"
+                ]
+            }
+        ];
 
-            // Set dynamic highlighted style
-            if(category === 'all') btnAll.className = "px-2.5 py-1 text-[10px] font-bold rounded bg-brand-800 text-white transition-all shadow-sm";
-            if(category === 'core') btnCore.className = "px-2.5 py-1 text-[10px] font-bold rounded bg-brand-800 text-white transition-all shadow-sm";
-            if(category === 'ml-cv') btnMlCv.className = "px-2.5 py-1 text-[10px] font-bold rounded bg-brand-800 text-white transition-all shadow-sm";
+        const EDUCATION = [
+            {
+                degree: "M.Sc. Applied Data Science",
+                institution: "SRM Institute of Science & Technology, Trichy",
+                period: "2024 – 2026",
+                grade: "CGPA: 8.54",
+                honor: "First Class with Distinction",
+                details: "Advanced study in Machine Learning, Statistical Inference, Deep Learning, Big Data Analytics, and AI application development."
+            },
+            {
+                degree: "B.Sc. Statistics",
+                institution: "St. Joseph’s College (Autonomous), Trichy",
+                period: "2021 – 2024",
+                grade: "CGPA: 6.6",
+                honor: "First Class",
+                details: "Core mastery of Probability Theory, Applied Regression Models, Sampling Techniques, Design of Experiments, and Applied Statistics."
+            }
+        ];
 
-            skills.forEach(skill => {
-                if (category === 'all') {
-                    skill.classList.remove('hidden');
-                } else if (skill.getAttribute('data-category') === category) {
-                    skill.classList.remove('hidden');
+        const WORKSHOPS_PRESENTATIONS = {
+            certifications: [
+                "Data Analytics using Python",
+                "Data Visualization in Power BI",
+                "Advanced Excel for Data Analysis",
+                "R Programming for Data Science"
+            ],
+            workshops: [
+                {
+                    title: "Agentic AI Workshop",
+                    organizer: "Mission AI Initiative (associated with FITA Academy)",
+                    desc: "Hands-on exploration of autonomous AI agent architectures, tool orchestration, and multi-step reasoning."
+                }
+            ],
+            presentations: [
+                {
+                    title: "An End-to-End Interactive Machine Learning Web Application for Freshers Using Streamlit",
+                    venue: "Dhanalakshmi Srinivasan Engineering College, Perambalur",
+                    type: "Conference Presentation"
+                },
+                {
+                    title: "Sentiment Analysis of Customer Reviews Using NLP",
+                    venue: "SRM Institute of Science & Technology, Trichy",
+                    type: "Theoretical Study & Presentation"
+                }
+            ]
+        };
+
+        const CREATIVE_JOURNEY = {
+            title: "Short Film Making & Storytelling",
+            subtitle: "Creative Problem Solving & Leadership",
+            description: "Beyond code and data, my creative work in short film production has been pivotal in honing visual narrative structure, strategic framing, and team collaboration.",
+            transferableSkills: [
+                { skill: "Script & Dialogue Writing", relevance: "Informs logical structuring, technical documentation clarity, and UX conversation design." },
+                { skill: "Framing & Visual Composition", relevance: "Directly translates to visual balance, grid alignment, and intuitive dashboard design." },
+                { skill: "Team Coordination & Leadership", relevance: "Strengthens cross-functional teamwork, conflict management, and group alignment." },
+                { skill: "Resource & Time Management", relevance: "Ensures projects strictly adhere to timelines, budget constraints, and delivery milestones." }
+            ]
+        };
+
+        // ==========================================
+        // 2. HELPER COMPONENTS
+        // ==========================================
+
+        const Icon = ({ name, className = "w-5 h-5" }) => {
+            useEffect(() => {
+                if (window.lucide) {
+                    window.lucide.createIcons();
+                }
+            }, [name]);
+            return <i data-lucide={name} class={className}></i>;
+        };
+
+        const CopyButton = ({ text, label }) => {
+            const [copied, setCopied] = useState(false);
+
+            const handleCopy = () => {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
+            };
+
+            return (
+                <button
+                    onClick={handleCopy}
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs rounded-md bg-slate-800 hover:bg-cyan-950 text-cyan-300 border border-cyan-800/50 transition-all"
+                    title={`Copy ${label || text}`}
+                >
+                    <Icon name={copied ? "check" : "copy"} className="w-3.5 h-3.5" />
+                    <span>{copied ? "Copied!" : "Copy"}</span>
+                </button>
+            );
+        };
+
+        // ==========================================
+        // 3. MAIN APP COMPONENT
+        // ==========================================
+
+        function App() {
+            const [darkMode, setDarkMode] = useState(true);
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+            const [activeTab, setActiveTab] = useState("all");
+            const [searchQuery, setSearchQuery] = useState("");
+            const [selectedProject, setSelectedProject] = useState(null);
+            const [imageToggle, setImageToggle] = useState('after');
+
+            useEffect(() => {
+                if (darkMode) {
+                    document.documentElement.classList.add('dark');
                 } else {
-                    skill.classList.add('hidden');
+                    document.documentElement.classList.remove('dark');
+                }
+            }, [darkMode]);
+
+            useEffect(() => {
+                if (window.lucide) {
+                    window.lucide.createIcons();
                 }
             });
-        }
 
-        // Helper: Instant copy interaction
-        function copyToClipboard(text, message) {
-            // Standard backup for iframe environments
-            const tempInput = document.createElement("input");
-            tempInput.value = text;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempInput);
-
-            showToast(message);
-        }
-
-        // Custom toast trigger (replaces annoying browser alerts)
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toast-message');
-            
-            toastMsg.textContent = message;
-            toast.classList.remove('opacity-0', 'translate-y-12', 'pointer-events-none');
-            toast.classList.add('opacity-100', 'translate-y-0');
-
-            setTimeout(() => {
-                toast.classList.add('opacity-0', 'translate-y-12', 'pointer-events-none');
-                toast.classList.remove('opacity-100', 'translate-y-0');
-            }, 3000);
-        }
-
-        // Small mobile navigation helper
-        function setupMobileMenu() {
-            const btn = document.getElementById('mobile-menu-trigger');
-            const menu = document.getElementById('mobile-dropdown');
-            if (btn && menu) {
-                btn.addEventListener('click', () => {
-                    menu.classList.toggle('hidden');
+            const filteredProjects = useMemo(() => {
+                return PROJECTS.filter(project => {
+                    const matchesCategory = activeTab === "all" || project.category.toLowerCase().includes(activeTab.toLowerCase());
+                    const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                          project.tech.some(t => t.toLowerCase().includes(searchQuery.toLowerCase())) ||
+                                          project.shortDesc.toLowerCase().includes(searchQuery.toLowerCase());
+                    return matchesCategory && matchesSearch;
                 });
-            }
+            }, [activeTab, searchQuery]);
+
+            return (
+                <div className={`min-h-screen transition-colors duration-300 font-sans ${darkMode ? 'bg-slate-950 text-slate-100' : 'bg-slate-50 text-slate-800'}`}>
+                    
+                    {/* Background Visual Effects */}
+                    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+                        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[120px]" />
+                        <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px]" />
+                        <div className={`absolute inset-0 ${darkMode ? 'bg-[radial-gradient(#1e293b_1px,transparent_1px)]' : 'bg-[radial-gradient(#e2e8f0_1px,transparent_1px)]'} [background-size:24px_24px] opacity-40`} />
+                    </div>
+
+                    {/* Navbar */}
+                    <header className={`sticky top-0 z-40 backdrop-blur-md border-b transition-colors ${darkMode ? 'bg-slate-950/80 border-slate-800/80' : 'bg-slate-50/80 border-slate-200'}`}>
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+                            
+                            <a href="#hero" className="flex items-center gap-2 font-bold text-lg tracking-tight">
+                                <span className="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white text-sm font-mono shadow-md shadow-cyan-500/20">
+                                    PK
+                                </span>
+                                <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
+                                    Prawin Kanna P
+                                </span>
+                            </a>
+
+                            {/* Desktop Nav */}
+                            <nav className="hidden md:flex items-center gap-6 text-xs font-medium uppercase tracking-wider text-slate-400">
+                                <a href="#about" className="hover:text-cyan-400 transition-colors">About</a>
+                                <a href="#skills" className="hover:text-cyan-400 transition-colors">Skills</a>
+                                <a href="#projects" className="hover:text-cyan-400 transition-colors">Projects</a>
+                                <a href="#experience" className="hover:text-cyan-400 transition-colors">Experience</a>
+                                <a href="#education" className="hover:text-cyan-400 transition-colors">Education</a>
+                                <a href="#workshops" className="hover:text-cyan-400 transition-colors">Workshops</a>
+                                <a href="#creative" className="hover:text-cyan-400 transition-colors">Creative</a>
+                                <a href="#contact" className="hover:text-cyan-400 transition-colors">Contact</a>
+                            </nav>
+
+                            {/* Actions */}
+                            <div className="flex items-center gap-3">
+                                <button
+                                    onClick={() => setDarkMode(!darkMode)}
+                                    className={`p-2 rounded-lg border transition-all ${darkMode ? 'bg-slate-900 border-slate-800 text-amber-400 hover:bg-slate-800' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-100'}`}
+                                    aria-label="Toggle Theme"
+                                >
+                                    <Icon name={darkMode ? "sun" : "moon"} className="w-4 h-4" />
+                                </button>
+
+                                <a
+                                    href="#contact"
+                                    className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-sm shadow-cyan-500/20 transition-all"
+                                >
+                                    Get In Touch
+                                </a>
+
+                                <button
+                                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                                    className="md:hidden p-2 text-slate-400 hover:text-white"
+                                >
+                                    <Icon name={mobileMenuOpen ? "x" : "menu"} className="w-6 h-6" />
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Mobile Dropdown */}
+                        {mobileMenuOpen && (
+                            <nav className="md:hidden border-b border-slate-800 bg-slate-950/95 px-4 pt-2 pb-4 space-y-2 text-sm">
+                                {['about', 'skills', 'projects', 'experience', 'education', 'workshops', 'creative', 'contact'].map((item) => (
+                                    <a
+                                        key={item}
+                                        href={`#${item}`}
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="block py-2 text-slate-300 hover:text-cyan-400 capitalize"
+                                    >
+                                        {item}
+                                    </a>
+                                ))}
+                            </nav>
+                        )}
+                    </header>
+
+                    <main className="relative z-10 space-y-24 pb-20">
+
+                        {/* ================= HERO SECTION ================= */}
+                        <section id="hero" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 md:pt-20">
+                            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                                
+                                <div className="lg:col-span-7 space-y-6">
+                                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono border border-cyan-500/30 bg-cyan-500/10 text-cyan-300">
+                                        <Icon name="sparkles" className="w-3.5 h-3.5 text-cyan-400" />
+                                        <span>Available for AI / ML & Analytics Roles</span>
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight">
+                                            Hi, I'm <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">{PROFILE_DATA.name}</span>
+                                        </h1>
+                                        <p className="text-lg sm:text-xl font-medium text-slate-300">
+                                            {PROFILE_DATA.title}
+                                        </p>
+                                    </div>
+
+                                    <p className="text-slate-400 text-base leading-relaxed max-w-2xl">
+                                        Applied Data Science postgraduate bridging statistical rigor, machine learning pipelines, and interactive AI application development with Streamlit & Python.
+                                    </p>
+
+                                    <div className="flex flex-wrap gap-2 pt-2">
+                                        {["Data Analytics", "Machine Learning", "Generative AI", "Python", "Data Visualization", "Streamlit"].map((skill, i) => (
+                                            <span 
+                                                key={i}
+                                                className="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-900 border border-slate-800 text-slate-300"
+                                            >
+                                                {skill}
+                                            </span>
+                                        ))}
+                                    </div>
+
+                                    <div className="flex flex-wrap gap-4 pt-4">
+                                        <a
+                                            href="#projects"
+                                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-lg shadow-cyan-500/20 transition-all hover:-translate-y-0.5"
+                                        >
+                                            <span>Explore My Projects</span>
+                                            <Icon name="arrow-right" className="w-4 h-4" />
+                                        </a>
+
+                                        <a
+                                            href="#contact"
+                                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-200 transition-all"
+                                        >
+                                            <span>Contact Me</span>
+                                        </a>
+
+                                        <a
+                                            href={PROFILE_DATA.portfolio}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm bg-slate-900/50 border border-slate-800 hover:border-cyan-500/50 text-cyan-400 transition-all"
+                                        >
+                                            <Icon name="external-link" className="w-4 h-4" />
+                                            <span>Live Portfolio URL</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                {/* Interactive Visual Motif */}
+                                <div className="lg:col-span-5">
+                                    <div className="relative rounded-2xl p-1 bg-gradient-to-b from-cyan-500/20 via-slate-800/40 to-slate-900/80 border border-slate-800 backdrop-blur-xl shadow-2xl">
+                                        <div className="flex items-center justify-between px-4 py-3 border-b border-slate-800/80 bg-slate-900/90 rounded-t-xl">
+                                            <div className="flex items-center gap-2">
+                                                <span className="w-3 h-3 rounded-full bg-rose-500/80" />
+                                                <span className="w-3 h-3 rounded-full bg-amber-500/80" />
+                                                <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
+                                            </div>
+                                            <div className="text-xs font-mono text-slate-400 flex items-center gap-1.5">
+                                                <Icon name="terminal" className="w-3.5 h-3.5 text-cyan-400" />
+                                                <span>prawin_analytics_core.py</span>
+                                            </div>
+                                        </div>
+
+                                        <div className="p-5 font-mono text-xs space-y-4 bg-slate-950/90 rounded-b-xl text-slate-300">
+                                            <div className="text-slate-500"># Pipeline Initialization</div>
+                                            <div>
+                                                <span className="text-purple-400">import</span> <span className="text-cyan-300">pandas</span> <span className="text-purple-400">as</span> <span className="text-cyan-300">pd</span>
+                                            </div>
+                                            <div>
+                                                <span className="text-purple-400">from</span> <span className="text-cyan-300">sklearn.ensemble</span> <span className="text-purple-400">import</span> <span className="text-amber-300">RandomForestRegressor</span>
+                                            </div>
+                                            <div className="p-3 rounded-lg bg-slate-900/80 border border-slate-800 space-y-2">
+                                                <div className="text-xs font-semibold text-cyan-400 flex justify-between">
+                                                    <span>MODEL PIPELINE STATUS</span>
+                                                    <span className="text-emerald-400">READY</span>
+                                                </div>
+                                                <div className="text-[11px] text-slate-400">
+                                                    [+] M.Sc Applied Data Science (SRM IST)<br />
+                                                    [+] B.Sc Statistics (St. Joseph's)<br />
+                                                    [+] Core Analytics Engine Loaded
+                                                </div>
+                                            </div>
+
+                                            <div className="pt-2">
+                                                <div className="text-[10px] text-slate-400 mb-1 flex justify-between">
+                                                    <span>FORECAST RESIDUAL EVALUATION</span>
+                                                    <span className="text-cyan-400">R² = 0.91</span>
+                                                </div>
+                                                <div className="h-20 w-full">
+                                                    <ResponsiveContainer width="100%" height="100%">
+                                                        <BarChart data={PROJECTS[0].chartData}>
+                                                            <Bar dataKey="r2" fill="#06b6d4" radius={[4, 4, 0, 0]} />
+                                                        </BarChart>
+                                                    </ResponsiveContainer>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </section>
+
+                        {/* ================= ABOUT ME ================= */}
+                        <section id="about" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="p-8 sm:p-10 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-md relative overflow-hidden">
+                                <div className="flex items-center gap-3 mb-6">
+                                    <div className="p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
+                                        <Icon name="brain" className="w-5 h-5" />
+                                    </div>
+                                    <h2 className="text-2xl font-bold tracking-tight">About Me</h2>
+                                </div>
+
+                                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                                    <div className="lg:col-span-8 text-slate-300 space-y-4 leading-relaxed text-sm sm:text-base">
+                                        <p>
+                                            I am an <strong className="text-white">Applied Data Science postgraduate</strong> with an undergraduate foundation in <strong className="text-white">Statistics</strong>. My interests include Data Analytics, Machine Learning, Artificial Intelligence, Computer Vision, and interactive application development. I enjoy transforming raw data into useful insights and building practical applications using Python and Streamlit.
+                                        </p>
+                                        <p>
+                                            My professional experiences in technical training, customer service, property management, and client communication have helped me develop communication, teamwork, problem-solving, and organizational skills. My long-term goal is to become an <strong className="text-cyan-400">AI/ML Engineer</strong> and develop reliable, useful AI-powered applications.
+                                        </p>
+                                    </div>
+
+                                    <div className="lg:col-span-4 space-y-3">
+                                        <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 flex items-start gap-3">
+                                            <Icon name="graduation-cap" className="w-5 h-5 text-cyan-400 mt-0.5 shrink-0" />
+                                            <div>
+                                                <h4 className="text-xs font-semibold uppercase text-slate-400">Academic Foundation</h4>
+                                                <p className="text-sm font-medium text-slate-200">M.Sc Applied Data Science & B.Sc Statistics</p>
+                                            </div>
+                                        </div>
+
+                                        <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 flex items-start gap-3">
+                                            <Icon name="book-open" className="w-5 h-5 text-indigo-400 mt-0.5 shrink-0" />
+                                            <div>
+                                                <h4 className="text-xs font-semibold uppercase text-slate-400">Core Focus</h4>
+                                                <p className="text-sm font-medium text-slate-200">ML Pipelines, Streamlit Apps, Data Viz</p>
+                                            </div>
+                                        </div>
+
+                                        <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 flex items-start gap-3">
+                                            <Icon name="map-pin" className="w-5 h-5 text-emerald-400 mt-0.5 shrink-0" />
+                                            <div>
+                                                <h4 className="text-xs font-semibold uppercase text-slate-400">Location Base</h4>
+                                                <p className="text-sm font-medium text-slate-200">{PROFILE_DATA.location}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* ================= TECHNICAL SKILLS DASHBOARD ================= */}
+                        <section id="skills" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                                <div>
+                                    <div className="flex items-center gap-2 text-cyan-400 text-xs font-mono uppercase tracking-wider mb-1">
+                                        <Icon name="code" className="w-4 h-4" />
+                                        <span>Technical Competencies</span>
+                                    </div>
+                                    <h2 className="text-3xl font-bold tracking-tight">Skills & Technical Toolkit</h2>
+                                </div>
+                                <p className="text-slate-400 text-xs max-w-md">
+                                    Categorized taxonomy of programming languages, analytics libraries, machine learning frameworks, and development environments.
+                                </p>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                                {SKILL_CATEGORIES.map((cat, idx) => (
+                                    <div 
+                                        key={idx}
+                                        className="p-5 rounded-xl bg-slate-900/50 border border-slate-800 hover:border-slate-700 transition-all flex flex-col justify-between group"
+                                    >
+                                        <div>
+                                            <div className="flex items-center gap-3 mb-4">
+                                                <div className="p-2.5 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
+                                                    <Icon name={cat.icon} className="w-5 h-5" />
+                                                </div>
+                                                <h3 className="font-semibold text-base text-slate-200 group-hover:text-cyan-300 transition-colors">
+                                                    {cat.name}
+                                                </h3>
+                                            </div>
+
+                                            <div className="flex flex-wrap gap-1.5">
+                                                {cat.skills.map((skill, sIdx) => (
+                                                    <span 
+                                                        key={sIdx}
+                                                        className="px-2.5 py-1 text-xs rounded-md bg-slate-950/80 border border-slate-800 text-slate-300"
+                                                    >
+                                                        {skill}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+                        {/* ================= FEATURED PROJECTS ================= */}
+                        <section id="projects" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                                <div>
+                                    <div className="flex items-center gap-2 text-cyan-400 text-xs font-mono uppercase tracking-wider mb-1">
+                                        <Icon name="layers" className="w-4 h-4" />
+                                        <span>Applied Work</span>
+                                    </div>
+                                    <h2 className="text-3xl font-bold tracking-tight">Featured Projects</h2>
+                                </div>
+
+                                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                                    <div className="relative">
+                                        <input
+                                            type="text"
+                                            placeholder="Search projects..."
+                                            value={searchQuery}
+                                            onChange={(e) => setSearchQuery(e.target.value)}
+                                            className="px-3 py-1.5 text-xs rounded-lg bg-slate-900 border border-slate-800 focus:outline-none focus:border-cyan-500 text-slate-200 w-full sm:w-48"
+                                        />
+                                    </div>
+
+                                    <div className="flex items-center gap-1 overflow-x-auto pb-1 sm:pb-0">
+                                        {["all", "Machine Learning", "Data Analytics", "Generative AI", "Computer Vision"].map((tab) => (
+                                            <button
+                                                key={tab}
+                                                onClick={() => setActiveTab(tab)}
+                                                className={`px-3 py-1.5 text-xs rounded-lg font-medium whitespace-nowrap transition-all ${
+                                                    activeTab === tab
+                                                        ? "bg-cyan-500 text-slate-950 font-semibold"
+                                                        : "bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200"
+                                                }`}
+                                            >
+                                                {tab === "all" ? "All Projects" : tab}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {filteredProjects.map((project) => (
+                                    <div
+                                        key={project.id}
+                                        className="rounded-xl bg-slate-900/60 border border-slate-800 hover:border-cyan-500/40 transition-all flex flex-col justify-between p-6 group relative"
+                                    >
+                                        <div className="space-y-4">
+                                            <div className="flex items-center justify-between">
+                                                <span className="px-2.5 py-0.5 text-[11px] font-mono rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300">
+                                                    {project.category}
+                                                </span>
+
+                                                {project.hasArchDiagram && (
+                                                    <span className="flex items-center gap-1 text-[10px] font-mono text-purple-400">
+                                                        <Icon name="bot" className="w-3 h-3" /> Architecture
+                                                    </span>
+                                                )}
+                                            </div>
+
+                                            <h3 className="text-lg font-bold text-slate-100 group-hover:text-cyan-300 transition-colors leading-snug">
+                                                {project.title}
+                                            </h3>
+
+                                            <p className="text-xs text-slate-400 leading-relaxed line-clamp-3">
+                                                {project.shortDesc}
+                                            </p>
+
+                                            <div className="flex flex-wrap gap-1.5 pt-1">
+                                                {project.tech.map((t, idx) => (
+                                                    <span key={idx} className="px-2 py-0.5 text-[10px] rounded bg-slate-950 border border-slate-800 text-slate-400">
+                                                        {t}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        <div className="pt-6 mt-4 border-t border-slate-800/80 flex items-center justify-between">
+                                            <button
+                                                onClick={() => setSelectedProject(project)}
+                                                className="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-400 hover:text-cyan-300"
+                                            >
+                                                <span>Technical Details</span>
+                                                <Icon name="chevron-right" className="w-3.5 h-3.5" />
+                                            </button>
+
+                                            <div className="flex items-center gap-2">
+                                                {project.githubUrl && (
+                                                    <a
+                                                        href={project.githubUrl}
+                                                        target="_blank"
+                                                        rel="noreferrer"
+                                                        className="p-1.5 rounded-md bg-slate-800 text-slate-300 hover:text-white"
+                                                        title="GitHub Repository"
+                                                    >
+                                                        <Icon name="github" className="w-4 h-4" />
+                                                    </a>
+                                                )}
+                                                {project.liveUrl && (
+                                                    <a
+                                                        href={project.liveUrl}
+                                                        target="_blank"
+                                                        rel="noreferrer"
+                                                        className="p-1.5 rounded-md bg-slate-800 text-cyan-400 hover:text-cyan-300"
+                                                        title="Live Site"
+                                                    >
+                                                        <Icon name="external-link" className="w-4 h-4" />
+                                                    </a>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+                        {/* ================= EXPANDABLE PROJECT MODAL ================= */}
+                        {selectedProject && (
+                            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+                                <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 space-y-6 shadow-2xl relative">
+                                    
+                                    <button
+                                        onClick={() => setSelectedProject(null)}
+                                        className="absolute top-4 right-4 p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white"
+                                    >
+                                        <Icon name="x" className="w-5 h-5" />
+                                    </button>
+
+                                    <div className="space-y-2">
+                                        <span className="px-2.5 py-1 text-xs font-mono rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300">
+                                            {selectedProject.category}
+                                        </span>
+                                        <h3 className="text-2xl font-bold text-slate-100">{selectedProject.title}</h3>
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400">Project Objective</h4>
+                                        <p className="text-sm text-slate-300 leading-relaxed bg-slate-950/60 p-4 rounded-xl border border-slate-800">
+                                            {selectedProject.objective}
+                                        </p>
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400">Technical Approach & Key Features</h4>
+                                        <ul className="space-y-2">
+                                            {selectedProject.features.map((feat, i) => (
+                                                <li key={i} className="flex items-start gap-2 text-xs text-slate-300">
+                                                    <Icon name="check-circle-2" className="w-4 h-4 text-cyan-400 mt-0.5 shrink-0" />
+                                                    <span>{feat}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    {/* System Architecture Flow for Chatbots */}
+                                    {selectedProject.hasArchDiagram && selectedProject.archSteps && (
+                                        <div className="space-y-3 pt-2">
+                                            <h4 className="text-xs font-semibold uppercase tracking-wider text-purple-400 flex items-center gap-1.5">
+                                                <Icon name="bot" className="w-4 h-4" /> System Architecture Flow
+                                            </h4>
+                                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 bg-slate-950 p-4 rounded-xl border border-slate-800">
+                                                {selectedProject.archSteps.map((step, sIdx) => (
+                                                    <div key={sIdx} className="p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-center space-y-1">
+                                                        <div className="text-[10px] font-mono text-cyan-400">STEP {sIdx + 1}</div>
+                                                        <div className="text-xs font-semibold text-slate-200">{step.title}</div>
+                                                        <div className="text-[10px] text-slate-400">{step.desc}</div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {/* Recharts Model Evaluation */}
+                                    {selectedProject.chartData && (
+                                        <div className="space-y-2 pt-2">
+                                            <h4 className="text-xs font-semibold uppercase tracking-wider text-cyan-400">
+                                                Model Evaluation Metrics (Empirical Comparison)
+                                            </h4>
+                                            <div className="h-48 w-full bg-slate-950 p-4 rounded-xl border border-slate-800">
+                                                <ResponsiveContainer width="100%" height="100%">
+                                                    <BarChart data={selectedProject.chartData}>
+                                                        <XAxis dataKey="model" stroke="#64748b" fontSize={12} />
+                                                        <YAxis stroke="#64748b" fontSize={12} />
+                                                        <Tooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px' }} />
+                                                        <Bar dataKey="mae" fill="#f59e0b" name="MAE (Lower is better)" />
+                                                        <Bar dataKey="rmse" fill="#ef4444" name="RMSE (Lower is better)" />
+                                                    </BarChart>
+                                                </ResponsiveContainer>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {/* OpenCV Before / After Interactive Toggle */}
+                                    {selectedProject.hasBeforeAfterDemo && (
+                                        <div className="space-y-3 pt-2">
+                                            <h4 className="text-xs font-semibold uppercase tracking-wider text-rose-400">
+                                                OpenCV Preprocessing Simulation
+                                            </h4>
+                                            <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center space-y-3">
+                                                <div className="flex justify-center gap-2">
+                                                    <button
+                                                        onClick={() => setImageToggle('original')}
+                                                        className={`px-3 py-1 text-xs rounded-md ${imageToggle === 'original' ? 'bg-cyan-500 text-slate-950 font-bold' : 'bg-slate-800 text-slate-300'}`}
+                                                    >
+                                                        Original Frame
+                                                    </button>
+                                                    <button
+                                                        onClick={() => setImageToggle('after')}
+                                                        className={`px-3 py-1 text-xs rounded-md ${imageToggle === 'after' ? 'bg-cyan-500 text-slate-950 font-bold' : 'bg-slate-800 text-slate-300'}`}
+                                                    >
+                                                        Canny Edge Detection
+                                                    </button>
+                                                </div>
+
+                                                <div className="h-32 rounded-lg border border-slate-800 flex items-center justify-center font-mono text-xs bg-slate-900 text-slate-400">
+                                                    {imageToggle === 'original' ? (
+                                                        <div className="space-y-1">
+                                                            <p>[RGB Frame Input: 640x480x3]</p>
+                                                            <p className="text-[10px] text-slate-500">Raw Pixel Stream Matrix</p>
+                                                        </div>
+                                                    ) : (
+                                                        <div className="space-y-1 text-cyan-400">
+                                                            <p>[Spatial Threshold Matrix Output]</p>
+                                                            <p className="text-[10px] text-emerald-400">Canny Thresholds: Lower=100, Upper=200</p>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {selectedProject.verifiedMetricsNote && (
+                                        <p className="text-[11px] text-slate-400 italic bg-slate-950/40 p-3 rounded-lg border border-slate-800/80">
+                                            {selectedProject.verifiedMetricsNote}
+                                        </p>
+                                    )}
+
+                                    <div className="flex flex-wrap gap-2 pt-2">
+                                        {selectedProject.tech.map((t, idx) => (
+                                            <span key={idx} className="px-2.5 py-1 text-xs rounded bg-slate-950 border border-slate-800 text-cyan-300 font-mono">
+                                                {t}
+                                            </span>
+                                        ))}
+                                    </div>
+
+                                </div>
+                            </div>
+                        )}
+
+                        {/* ================= PROFESSIONAL EXPERIENCE ================= */}
+                        <section id="experience" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                            <div className="flex items-center gap-2 text-cyan-400 text-xs font-mono uppercase tracking-wider mb-1">
+                                <Icon name="briefcase" className="w-4 h-4" />
+                                <span>Career History</span>
+                            </div>
+                            <h2 className="text-3xl font-bold tracking-tight">Professional Experience & Internships</h2>
+
+                            <div className="relative border-l-2 border-slate-800 ml-4 sm:ml-6 space-y-8 pl-6 sm:pl-8">
+                                {EXPERIENCE.map((exp, idx) => (
+                                    <div key={idx} className="relative group">
+                                        <div className="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-slate-950 border-2 border-cyan-400 group-hover:bg-cyan-400 transition-colors" />
+
+                                        <div className="p-6 rounded-xl bg-slate-900/50 border border-slate-800 space-y-3">
+                                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                                                <h3 className="text-lg font-bold text-slate-100">{exp.role}</h3>
+                                                <span className="text-xs font-mono px-2.5 py-1 rounded bg-slate-950 text-cyan-400 border border-slate-800 w-fit">
+                                                    {exp.periodConfirmed ? exp.period : "Timeline Record"}
+                                                </span>
+                                            </div>
+
+                                            <p className="text-xs font-medium text-slate-400">{exp.company}</p>
+
+                                            <p className="text-xs text-slate-300 leading-relaxed">
+                                                {exp.description}
+                                            </p>
+
+                                            <ul className="space-y-1.5 pt-2">
+                                                {exp.highlights.map((item, hIdx) => (
+                                                    <li key={hIdx} className="text-xs text-slate-400 flex items-start gap-2">
+                                                        <Icon name="chevron-right" className="w-3.5 h-3.5 text-cyan-500 mt-0.5 shrink-0" />
+                                                        <span>{item}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+                        {/* ================= EDUCATION ================= */}
+                        <section id="education" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                            <div className="flex items-center gap-2 text-cyan-400 text-xs font-mono uppercase tracking-wider mb-1">
+                                <Icon name="graduation-cap" className="w-4 h-4" />
+                                <span>Academic History</span>
+                            </div>
+                            <h2 className="text-3xl font-bold tracking-tight">Education</h2>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                {EDUCATION.map((edu, idx) => (
+                                    <div key={idx} className="p-6 rounded-xl bg-slate-900/50 border border-slate-800 space-y-4 flex flex-col justify-between">
+                                        <div className="space-y-2">
+                                            <div className="flex items-center justify-between">
+                                                <span className="text-xs font-mono text-cyan-400">{edu.period}</span>
+                                                <span className="px-2 py-0.5 text-[11px] font-semibold rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                                                    {edu.honor}
+                                                </span>
+                                            </div>
+                                            <h3 className="text-xl font-bold text-slate-100">{edu.degree}</h3>
+                                            <p className="text-xs font-medium text-slate-400">{edu.institution}</p>
+                                        </div>
+
+                                        <div className="space-y-2 pt-2 border-t border-slate-800/80">
+                                            <div className="text-xs font-semibold text-slate-300">{edu.grade}</div>
+                                            <p className="text-xs text-slate-400 leading-relaxed">{edu.details}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+                        {/* ================= WORKSHOPS & PRESENTATIONS ================= */}
+                        <section id="workshops" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                            <div className="flex items-center gap-2 text-cyan-400 text-xs font-mono uppercase tracking-wider mb-1">
+                                <Icon name="award" className="w-4 h-4" />
+                                <span>Credentials & Outreach</span>
+                            </div>
+                            <h2 className="text-3xl font-bold tracking-tight">Certifications, Workshops & Presentations</h2>
+
+                            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                <div className="p-6 rounded-xl bg-slate-900/50 border border-slate-800 space-y-4">
+                                    <h3 className="text-base font-bold text-slate-100 flex items-center gap-2">
+                                        <Icon name="check" className="w-4 h-4 text-cyan-400" />
+                                        <span>Verified Certifications</span>
+                                    </h3>
+                                    <ul className="space-y-2.5">
+                                        {WORKSHOPS_PRESENTATIONS.certifications.map((cert, i) => (
+                                            <li key={i} className="text-xs text-slate-300 p-2.5 rounded bg-slate-950 border border-slate-800/80">
+                                                {cert}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+
+                                <div className="p-6 rounded-xl bg-slate-900/50 border border-slate-800 space-y-4">
+                                    <h3 className="text-base font-bold text-slate-100 flex items-center gap-2">
+                                        <Icon name="zap" className="w-4 h-4 text-amber-400" />
+                                        <span>Specialized Workshops</span>
+                                    </h3>
+                                    {WORKSHOPS_PRESENTATIONS.workshops.map((ws, i) => (
+                                        <div key={i} className="p-3 rounded bg-slate-950 border border-slate-800/80 space-y-1">
+                                            <h4 className="text-xs font-bold text-slate-200">{ws.title}</h4>
+                                            <p className="text-[11px] text-cyan-400">{ws.organizer}</p>
+                                            <p className="text-[11px] text-slate-400">{ws.desc}</p>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div className="p-6 rounded-xl bg-slate-900/50 border border-slate-800 space-y-4">
+                                    <h3 className="text-base font-bold text-slate-100 flex items-center gap-2">
+                                        <Icon name="book-open" className="w-4 h-4 text-indigo-400" />
+                                        <span>Conference Presentations</span>
+                                    </h3>
+                                    {WORKSHOPS_PRESENTATIONS.presentations.map((pres, i) => (
+                                        <div key={i} className="p-3 rounded bg-slate-950 border border-slate-800/80 space-y-1">
+                                            <h4 className="text-xs font-bold text-slate-200 leading-snug">{pres.title}</h4>
+                                            <p className="text-[11px] text-slate-400">{pres.venue}</p>
+                                            <span className="inline-block text-[10px] text-indigo-300 font-mono">[{pres.type}]</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* ================= CREATIVE JOURNEY ================= */}
+                        <section id="creative" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="p-8 sm:p-10 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 border border-slate-800 relative overflow-hidden space-y-8">
+                                <div className="flex items-center gap-3">
+                                    <div className="p-2.5 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-400">
+                                        <Icon name="film" className="w-6 h-6" />
+                                    </div>
+                                    <div>
+                                        <h2 className="text-2xl font-bold text-slate-100">{CREATIVE_JOURNEY.title}</h2>
+                                        <p className="text-xs text-slate-400 font-mono">{CREATIVE_JOURNEY.subtitle}</p>
+                                    </div>
+                                </div>
+
+                                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-3xl">
+                                    {CREATIVE_JOURNEY.description}
+                                </p>
+
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                                    {CREATIVE_JOURNEY.transferableSkills.map((item, idx) => (
+                                        <div key={idx} className="p-4 rounded-xl bg-slate-950/80 border border-slate-800 space-y-2">
+                                            <h4 className="text-xs font-bold text-rose-300">{item.skill}</h4>
+                                            <p className="text-[11px] text-slate-400 leading-relaxed">{item.relevance}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* ================= CAREER GOALS ROADMAP ================= */}
+                        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+                            <div className="text-center space-y-2">
+                                <h2 className="text-2xl font-bold tracking-tight">Career Goals & Roadmap</h2>
+                                <p className="text-xs text-slate-400">Engineering roadmap toward AI/ML domain mastery</p>
+                            </div>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                {PROFILE_DATA.careerGoals.map((goal, idx) => (
+                                    <div key={idx} className="p-4 rounded-xl bg-slate-900/40 border border-slate-800 flex items-start gap-3">
+                                        <span className="w-5 h-5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 text-xs font-mono flex items-center justify-center shrink-0">
+                                            {idx + 1}
+                                        </span>
+                                        <p className="text-xs text-slate-300 leading-snug">{goal}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+                        {/* ================= CONTACT SECTION ================= */}
+                        <section id="contact" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                            <div className="text-center space-y-2 max-w-xl mx-auto">
+                                <div className="inline-flex items-center gap-2 text-cyan-400 text-xs font-mono uppercase tracking-wider">
+                                    <Icon name="mail" className="w-4 h-4" />
+                                    <span>Get In Touch</span>
+                                </div>
+                                <h2 className="text-3xl font-bold tracking-tight">Let's Connect</h2>
+                                <p className="text-xs text-slate-400">
+                                    Open to Data Analytics, Machine Learning, AI Engineering roles, research collaborations, or technical training engagements.
+                                </p>
+                            </div>
+
+                            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                                <div className="lg:col-span-5 space-y-4">
+                                    <div className="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-3">
+                                        <div className="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center justify-between">
+                                            <span>Email Addresses</span>
+                                            <Icon name="mail" className="w-4 h-4 text-cyan-400" />
+                                        </div>
+                                        {PROFILE_DATA.emails.map((email, i) => (
+                                            <div key={i} className="flex items-center justify-between text-xs font-mono bg-slate-950 p-2.5 rounded border border-slate-800">
+                                                <span className="truncate mr-2 text-slate-200">{email}</span>
+                                                <CopyButton text={email} label="Email" />
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    <div className="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-3">
+                                        <div className="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center justify-between">
+                                            <span>Phone Contact</span>
+                                            <Icon name="phone" className="w-4 h-4 text-emerald-400" />
+                                        </div>
+                                        <div className="flex items-center justify-between text-xs font-mono bg-slate-950 p-2.5 rounded border border-slate-800">
+                                            <span className="text-slate-200">{PROFILE_DATA.phone}</span>
+                                            <CopyButton text={PROFILE_DATA.phone} label="Phone" />
+                                        </div>
+                                    </div>
+
+                                    <div className="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-3">
+                                        <div className="text-xs font-semibold uppercase tracking-wider text-slate-400">Online Profiles</div>
+                                        <div className="flex flex-col gap-2">
+                                            <a
+                                                href={PROFILE_DATA.github}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className="flex items-center justify-between p-2.5 rounded bg-slate-950 border border-slate-800 hover:border-slate-700 text-xs text-slate-200 hover:text-cyan-400 transition-colors"
+                                            >
+                                                <span className="flex items-center gap-2">
+                                                    <Icon name="github" className="w-4 h-4 text-slate-400" /> GitHub Profile
+                                                </span>
+                                                <Icon name="external-link" className="w-3.5 h-3.5" />
+                                            </a>
+
+                                            <a
+                                                href={PROFILE_DATA.linkedin}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className="flex items-center justify-between p-2.5 rounded bg-slate-950 border border-slate-800 hover:border-slate-700 text-xs text-slate-200 hover:text-cyan-400 transition-colors"
+                                            >
+                                                <span className="flex items-center gap-2">
+                                                    <Icon name="linkedin" className="w-4 h-4 text-blue-400" /> LinkedIn Profile
+                                                </span>
+                                                <Icon name="external-link" className="w-3.5 h-3.5" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="lg:col-span-7 p-6 sm:p-8 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-4">
+                                    <h3 className="text-lg font-bold text-slate-100">Send a Direct Message</h3>
+                                    
+                                    <form 
+                                        onSubmit={(e) => {
+                                            e.preventDefault();
+                                            alert("Thank you! Message form is currently operating in static preview mode. Please email directly at " + PROFILE_DATA.emails[0]);
+                                        }}
+                                        className="space-y-4"
+                                    >
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                            <div className="space-y-1">
+                                                <label className="text-xs font-medium text-slate-400">Your Name</label>
+                                                <input 
+                                                    type="text" 
+                                                    required 
+                                                    placeholder="Jane Doe"
+                                                    className="w-full px-3 py-2 text-xs rounded-lg bg-slate-950 border border-slate-800 focus:outline-none focus:border-cyan-500 text-slate-200"
+                                                />
+                                            </div>
+                                            <div className="space-y-1">
+                                                <label className="text-xs font-medium text-slate-400">Email Address</label>
+                                                <input 
+                                                    type="email" 
+                                                    required 
+                                                    placeholder="jane@example.com"
+                                                    className="w-full px-3 py-2 text-xs rounded-lg bg-slate-950 border border-slate-800 focus:outline-none focus:border-cyan-500 text-slate-200"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="space-y-1">
+                                            <label className="text-xs font-medium text-slate-400">Subject</label>
+                                            <input 
+                                                type="text" 
+                                                required 
+                                                placeholder="Opportunity / Collaboration Inquiry"
+                                                className="w-full px-3 py-2 text-xs rounded-lg bg-slate-950 border border-slate-800 focus:outline-none focus:border-cyan-500 text-slate-200"
+                                            />
+                                        </div>
+
+                                        <div className="space-y-1">
+                                            <label className="text-xs font-medium text-slate-400">Message</label>
+                                            <textarea 
+                                                rows={4} 
+                                                required 
+                                                placeholder="Write your message here..."
+                                                className="w-full px-3 py-2 text-xs rounded-lg bg-slate-950 border border-slate-800 focus:outline-none focus:border-cyan-500 text-slate-200 resize-none"
+                                            />
+                                        </div>
+
+                                        <button
+                                            type="submit"
+                                            className="w-full py-2.5 rounded-lg text-xs font-bold bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 transition-all shadow-md shadow-cyan-500/20"
+                                        >
+                                            Send Message
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </section>
+
+                    </main>
+
+                    {/* Footer */}
+                    <footer className="border-t border-slate-800/80 bg-slate-950 py-8 text-slate-500 text-xs">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div className="space-y-1 text-center sm:text-left">
+                                <p className="font-semibold text-slate-400">{PROFILE_DATA.name} — AI & Data Science Portfolio</p>
+                                <p className="text-[11px]">Deployed directly on GitHub Pages root using static HTML, React UMD & Tailwind CSS.</p>
+                            </div>
+
+                            <div className="flex items-center gap-4 text-slate-400">
+                                <a href={PROFILE_DATA.github} target="_blank" rel="noreferrer" className="hover:text-cyan-400">GitHub</a>
+                                <a href={PROFILE_DATA.linkedin} target="_blank" rel="noreferrer" className="hover:text-cyan-400">LinkedIn</a>
+                                <a href="#hero" className="hover:text-cyan-400">Back to Top ↑</a>
+                            </div>
+                        </div>
+                    </footer>
+
+                </div>
+            );
         }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
     </script>
 </body>
 </html>
